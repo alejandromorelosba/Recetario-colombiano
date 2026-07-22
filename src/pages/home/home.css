@@ -1,0 +1,217 @@
+/**Variables para el codigo de colores a utilizar**/
+:root{
+    --color-principal: rgb(244, 197, 66);
+    --boton: rgb(233, 168, 37);
+    --botones-secundario: rgb(46, 139, 87);
+    --backgrund-suave: rgb(168, 213, 162);
+    --action-color: rgb(214, 40, 40);
+    --resaltar: rgb(247, 127, 0);
+    --header: rgb(111, 78, 55);
+    --main-background: rgb(255, 248, 231);
+    --tarjetas: rgb(255, 255, 255);
+    --main-text:rgb(51, 51, 51);
+    --borde:rgb(229, 229, 229);
+    --hover-bottun:rgb(79, 119, 45);
+}
+
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+/** diseño del cuerpo de la pagina**/
+body{
+    margin: 0;
+    padding: 0;
+    background-color: var(--main-background);
+    line-height: 1.6;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: var(--main-text);
+}
+/**Cabereza de la pagina**/
+header{
+    background-color: var(--header);
+    text-align: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 15px;
+    border-color: var(--borde);
+    color: var(--resaltar);
+}
+
+
+/** colores del texto inicial **/
+.cabezaraReceta{
+    justify-content: center;
+    text-align: center;
+    background-color: var(--backgrund-suave);
+    margin: 15px;
+    padding: 1.25px;
+    line-height: 0.85;
+}
+
+.cabezaraReceta h1{
+    font-size: 45px;
+    color: var(--resaltar);
+}
+
+.cabezaraReceta h2{
+    font-size: 24px;
+}
+
+/** Colores de la imagen de inicio **/
+.cabezeraImagen{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+
+.cabezeraImagen img{
+    max-width: 100%;
+    width: 185vh ;
+    height: 500px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+/** diesño de la introduccion**/
+.intro h2{
+    justify-content: center;
+    text-align: center;
+    font-size: 25px;
+    color: var(--header);
+}
+
+.mainText{
+    justify-content: center;
+    text-align: justify;
+    margin: 30px;
+    line-height: 2;
+    background-color: var(--tarjetas);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--borde);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/** diseño de la seccion de historia (misma estructura que intro) **/
+.Historia h2{
+    justify-content: center;
+    text-align: center;
+    font-size: 25px;
+    color: var(--header);
+    margin-top: 40px;
+}
+
+.Historia .mainText{
+    background-color: var(--tarjetas);
+}
+
+/** diseño de la seccion de lista (ingredientes y metodo de coccion) **/
+.lista{
+    background-color: var(--backgrund-suave);
+    margin: 30px;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.lista h3{
+    text-align: center;
+    font-size: 22px;
+    color: var(--header);
+    margin-bottom: 10px;
+}
+
+/** tarjetas para las listas (ingredientes, metodo, complementos, datos) **/
+.list{
+    background-color: var(--tarjetas);
+    margin: 15px auto 25px auto;
+    padding: 20px 30px;
+    border-radius: 12px;
+    border: 1px solid var(--borde);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    max-width: 700px;
+}
+
+.list ul,
+.list ol{
+    margin: 0;
+    padding-left: 20px;
+}
+
+.list li{
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--borde);
+}
+
+.list li:last-child{
+    border-bottom: none;
+}
+
+.list ul li::marker{
+    color: var(--resaltar);
+}
+
+.list ol li::marker{
+    color: var(--botones-secundario);
+    font-weight: bold;
+}
+
+/** diseño de la seccion de complementos/acompañantes **/
+.complementos{
+    text-align: center;
+    margin: 30px;
+    padding: 20px;
+}
+
+.complementos h2{
+    font-size: 25px;
+    color: var(--botones-secundario);
+}
+
+/** diseño de la seccion de datos curiosos **/
+.datos{
+    background-color: var(--color-principal);
+    text-align: center;
+    margin: 30px;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.datos h2{
+    font-size: 25px;
+    color: var(--header);
+}
+
+.datos .list{
+    background-color: var(--tarjetas);
+}
+
+/** pie de pagina **/
+footer{
+    background-color: var(--header);
+    color: var(--main-background);
+    text-align: center;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+/** responsivo para pantallas pequeñas **/
+@media (max-width: 768px){
+    .cabezeraImagen img{
+        width: 100%;
+        height: 280px;
+    }
+
+    .cabezaraReceta h1{
+        font-size: 32px;
+    }
+
+    .mainText,
+    .list{
+        margin: 15px;
+        padding: 18px;
+    }
+}
