@@ -1,0 +1,74 @@
+/** barra de navegacion **/
+.navBar{
+    background-color: var(--header);
+    margin: 0 10px 10px 10px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    position: sticky;
+    top: 10px;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.navBar ul{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.navBar ul li a{
+    display: block;
+    color: var(--main-background);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 10px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navBar ul li a:hover{
+    background-color: var(--boton);
+    color: var(--header);
+}
+
+.navAuth .btnLogin{
+    background-color: transparent;
+    border: 2px solid var(--main-background);
+}
+
+.navAuth .btnLogin:hover{
+    background-color: var(--main-background);
+    color: var(--header);
+}
+
+.navAuth .btnRegistro{
+    background-color: var(--action-color);
+    color: var(--main-background);
+}
+
+.navAuth .btnRegistro:hover{
+    background-color: var(--resaltar);
+    color: var(--header);
+}
+
+@media (max-width: 768px){
+    .navBar{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navBar ul{
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+}

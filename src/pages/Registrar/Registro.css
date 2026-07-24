@@ -1,0 +1,184 @@
+/** ============================= **/
+/**   FORMULARIO DE REGISTRO   **/
+/** ============================= **/
+
+:root{
+    --color-principal: rgb(244, 197, 66);
+    --boton: rgb(233, 168, 37);
+    --botones-secundario: rgb(46, 139, 87);
+    --backgrund-suave: rgb(168, 213, 162);
+    --action-color: rgb(214, 40, 40);
+    --resaltar: rgb(247, 127, 0);
+    --header: rgb(111, 78, 55);
+    --main-background: rgb(255, 248, 231);
+    --tarjetas: rgb(255, 255, 255);
+    --main-text: rgb(51, 51, 51);
+    --borde: rgb(229, 229, 229);
+    --hover-bottun: rgb(79, 119, 45);
+}
+
+.registro-page{
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: var(--main-background);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.registro-card{
+    background-color: var(--tarjetas);
+    max-width: 400px;
+    width: 100%;
+    padding: 40px 35px;
+    border-radius: 15px;
+    border: 1px solid var(--borde);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.registro-card h2{
+    text-align: center;
+    font-size: 26px;
+    color: var(--header);
+    margin: 0 0 5px 0;
+}
+
+.registro-card .subtitulo{
+    text-align: center;
+    font-size: 14px;
+    color: var(--main-text);
+    opacity: 0.75;
+    margin: 0 0 25px 0;
+}
+
+.registro-card form{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.registro-card .campo{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.registro-card label{
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--header);
+}
+
+.registro-card input[type="text"],
+.registro-card input[type="email"],
+.registro-card input[type="password"]{
+    font-family: inherit;
+    font-size: 15px;
+    padding: 11px 14px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background-color: var(--main-background);
+    color: var(--main-text);
+    box-sizing: border-box;
+    width: 100%;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.registro-card input:focus{
+    outline: none;
+    border-color: var(--resaltar);
+    box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.15);
+}
+
+/** campo de contraseña con boton mostrar/ocultar **/
+.registro-card .campo-password{
+    position: relative;
+}
+
+.registro-card .campo-password input{
+    padding-right: 42px;
+}
+
+.registro-card .toggle-password{
+    position: absolute;
+    right: 12px;
+    bottom: 11px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--botones-secundario);
+    font-family: inherit;
+    padding: 0;
+}
+
+.registro-card .toggle-password:hover{
+    color: var(--resaltar);
+}
+
+/** boton principal de registro **/
+.registro-card button[type="submit"]{
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--boton);
+    color: var(--tarjetas);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.registro-card button[type="submit"]:hover:not(:disabled){
+    background-color: var(--resaltar);
+    transform: translateY(-2px);
+}
+
+.registro-card button[type="submit"]:disabled{
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/** mensaje de error general **/
+.registro-card .error-general{
+    background-color: rgba(214, 40, 40, 0.1);
+    color: var(--action-color);
+    border: 1px solid var(--action-color);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.registro-card .error-campo{
+    color: var(--action-color);
+    font-size: 12px;
+}
+
+/** enlace de inicio de sesion **/
+.registro-card .ingreso{
+    text-align: center;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.registro-card .ingreso a{
+    color: var(--boton);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.registro-card .ingreso a:hover{
+    color: var(--resaltar);
+    text-decoration: underline;
+}
+
+/** responsivo **/
+@media (max-width: 480px){
+    .registro-card{
+        padding: 30px 22px;
+    }
+}
