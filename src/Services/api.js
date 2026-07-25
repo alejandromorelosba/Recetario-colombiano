@@ -14,7 +14,14 @@ const pg = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5432 ;
+
+console.log("DATABASE_URL:", process.env.DATABASE_URL);
+
+// Comprobante que la api esta conectada 
+app.get("/", (request, response) => {
+  response.status(200).json({ message: "API funcionando" });
+});
 
 // registrar
 app.post("/sign-up", async (request, response) => {
@@ -92,35 +99,36 @@ app.post("/sign-in", async (request, response) => {
   }
 });
 
-// consultar usuarios
+// consultar usuarios (todos, o filtrados por name/email, búsqueda parcial)
 app.get("/usuarios", async (request, response) => {
   const { name, email } = request.query;
-
-  if (!name && !email) {
-    return response
-      .status(400)
-      .json({ error: "no has enviado nombre ni correo" });
-  }
 
   try {
     let usuarios;
 
-    if (name) {
+    if (name && email) {
+      // filtra por ambos a la vez
       usuarios = await pg.query(
-        `SELECT * FROM public."usuarios" WHERE name = $1`,
-        [name]
+        `SELECT * FROM public."usuarios" WHERE name ILIKE $1 AND email ILIKE $2`,
+        [`%${name}%`, `%${email}%`]
+      );
+    } else if (name) {
+      usuarios = await pg.query(
+        `SELECT * FROM public."usuarios" WHERE name ILIKE $1`,
+        [`%${name}%`]
       );
     } else if (email) {
       usuarios = await pg.query(
-        `SELECT * FROM public."usuarios" WHERE email = $1`,
-        [email]
+        `SELECT * FROM public."usuarios" WHERE email ILIKE $1`,
+        [`%${email}%`]
       );
     } else {
-      return response.status(400).json({ error: "Has enviado un dato incorrecto" });
+      // sin filtros -> devuelve todos los usuarios
+      usuarios = await pg.query(`SELECT * FROM public."usuarios"`);
     }
 
     if (!usuarios || usuarios.rows.length === 0) {
-      return response.status(400).json({ error: "No hay usuarios" });
+      return response.status(404).json({ error: "No hay usuarios" });
     }
 
     const usuariosSinPassword = usuarios.rows.map((u) => {
