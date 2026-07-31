@@ -1,6 +1,6 @@
 /** Barra de navegacion reutilizable **/
 import React from "react";
-import "./NavBar.css";
+import "./navBar.css";
 
 export default function NavBar() {
     return (
@@ -14,8 +14,8 @@ export default function NavBar() {
                 <li><a href="/#datos">Datos Curiosos</a></li>
             </ul>
             <ul className="navAuth">
-                <li><a href="/login" className="btnLogin">Iniciar sesión</a></li>
-                <li><a href="/registro" className="btnRegistro">Registrarse</a></li>
+                <li><a href="/login.html" className="btnLogin">Iniciar sesión</a></li>
+                <li><a href="/Registrar.html" className="btnRegistro">Registrarse</a></li>
             </ul>
         </nav>
     );

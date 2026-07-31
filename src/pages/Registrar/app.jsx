@@ -154,7 +154,7 @@ export default function Registro() {
                 </form>
 
                 <p className="ingreso">
-                    ¿Ya tienes cuenta? <a href="#login">Inicia sesión aquí</a>
+                    ¿Ya tienes cuenta? <a href="/login.html">Inicia sesión aquí</a>
                 </p>
             </div>
         </div>

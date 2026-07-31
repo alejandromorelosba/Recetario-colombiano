@@ -144,7 +144,7 @@ export default function Login() {
                 </form>
 
                 <p className="registro">
-                    ¿No tienes cuenta? <a href="#registro">Regístrate aquí</a>
+                    ¿No tienes cuenta? <a href="/Registrar.html">Regístrate aquí</a>
                 </p>
             </div>
         </div>
