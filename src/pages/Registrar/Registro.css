@@ -158,6 +158,18 @@
     font-size: 12px;
 }
 
+/** mensaje de exito (registro correcto) **/
+.registro-card .mensaje-exito{
+    background-color: rgba(46, 139, 87, 0.12);
+    color: var(--botones-secundario);
+    border: 1px solid var(--botones-secundario);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
 /** enlace de inicio de sesion **/
 .registro-card .ingreso{
     text-align: center;

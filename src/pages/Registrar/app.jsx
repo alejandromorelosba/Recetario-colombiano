@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "./Registro.css";
 import NavBar from "../../componets/NavBar/navBar.Jsx";
+import { API_URL } from "../../Services/config.js";
 
 /** Componente de registro de usuario **/
 export default function Registro() {
@@ -12,6 +13,7 @@ export default function Registro() {
     const [mostrarPassword, setMostrarPassword] = useState(false);
     const [errores, setErrores] = useState({});
     const [errorGeneral, setErrorGeneral] = useState("");
+    const [mensajeExito, setMensajeExito] = useState("");
     const [cargando, setCargando] = useState(false);
 
     const validar = () => {
@@ -40,6 +42,7 @@ export default function Registro() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorGeneral("");
+        setMensajeExito("");
 
         if (!validar()) {
             return;
@@ -48,17 +51,27 @@ export default function Registro() {
         setCargando(true);
 
         try {
-            // Aqui se conecta con el backend/API real de registro
-            // const respuesta = await fetch("/api/registro", {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify({ nombre, email, password }),
-            // });
-            // if (!respuesta.ok) throw new Error("No se pudo completar el registro");
+            const respuesta = await fetch(`${API_URL}/sign-up`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                // La API espera el campo "name", por eso se traduce desde "nombre"
+                body: JSON.stringify({ name: nombre, email, password }),
+            });
 
-            console.log("Registrando usuario:", { nombre, email, password });
+            const datos = await respuesta.json();
+
+            if (!respuesta.ok) {
+                throw new Error(datos.error || "No se pudo completar el registro");
+            }
+
+            setMensajeExito(datos.message || "Cuenta creada correctamente!");
+
+            // Redirige al login despues de un breve instante
+            setTimeout(() => {
+                window.location.href = "/login.html";
+            }, 1200);
         } catch (err) {
-            setErrorGeneral("No se pudo completar el registro. Intenta de nuevo.");
+            setErrorGeneral(err.message || "No se pudo completar el registro. Intenta de nuevo.");
         } finally {
             setCargando(false);
         }
@@ -76,6 +89,10 @@ export default function Registro() {
 
                 {errorGeneral && (
                     <div className="error-general">{errorGeneral}</div>
+                )}
+
+                {mensajeExito && (
+                    <div className="mensaje-exito">{mensajeExito}</div>
                 )}
 
                 <form onSubmit={handleSubmit} noValidate>

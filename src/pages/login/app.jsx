@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import "../../componets/NavBar/navBar.Jsx"
 import NavBar from "../../componets/NavBar/navBar.Jsx";
+import { API_URL } from "../../Services/config.js";
 
 /** Componente de inicio de sesion **/
 export default function Login() {
@@ -12,6 +13,7 @@ export default function Login() {
     const [mostrarPassword, setMostrarPassword] = useState(false);
     const [errores, setErrores] = useState({});
     const [errorGeneral, setErrorGeneral] = useState("");
+    const [mensajeExito, setMensajeExito] = useState("");
     const [cargando, setCargando] = useState(false);
 
     const validar = () => {
@@ -36,6 +38,7 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorGeneral("");
+        setMensajeExito("");
 
         if (!validar()) {
             return;
@@ -44,17 +47,32 @@ export default function Login() {
         setCargando(true);
 
         try {
-            // Aqui se conecta con el backend/API real de autenticacion
-            // const respuesta = await fetch("/api/login", {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify({ email, password }),
-            // });
-            // if (!respuesta.ok) throw new Error("Credenciales incorrectas");
+            const respuesta = await fetch(`${API_URL}/sign-in`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
 
-            console.log("Iniciando sesion con:", { email, password });
+            const datos = await respuesta.json();
+
+            if (!respuesta.ok) {
+                // El servidor respondio con 400/401/500: usamos su mensaje de error
+                throw new Error(datos.error || "Credenciales incorrectas");
+            }
+
+            // Login correcto: guardamos una sesion simple en el navegador
+            setMensajeExito(datos.message || "Bienvenido!");
+            localStorage.setItem(
+                "recetario_usuario",
+                JSON.stringify({ email })
+            );
+
+            // Redirige a la pagina de inicio despues de un breve instante
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1200);
         } catch (err) {
-            setErrorGeneral("Usuario o contraseña incorrectos.");
+            setErrorGeneral(err.message || "Usuario o contraseña incorrectos.");
         } finally {
             setCargando(false);
         }
@@ -73,6 +91,12 @@ export default function Login() {
                 {errorGeneral && (
                     <div className="error-general" style={{ display: "block" }}>
                         {errorGeneral}
+                    </div>
+                )}
+
+                {mensajeExito && (
+                    <div className="mensaje-exito" style={{ display: "block" }}>
+                        {mensajeExito}
                     </div>
                 )}
 
