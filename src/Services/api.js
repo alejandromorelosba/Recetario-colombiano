@@ -8,7 +8,36 @@ const { Pool } = require("pg");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+// Origenes permitidos para CORS.
+// - Siempre se permiten los puertos comunes de desarrollo local (Parcel).
+// - FRONTEND_URL permite agregar el/los dominios de produccion, separados por coma
+//   (ej: FRONTEND_URL=https://recetario.vercel.app,https://www.recetario.vercel.app)
+const origenesPermitidos = [
+  "http://localhost:1234",
+  "http://127.0.0.1:1234",
+  ...(process.env.FRONTEND_URL
+    ? process.env.FRONTEND_URL.split(",").map((url) => url.trim())
+    : []),
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Sin "origin" = peticiones desde Postman, curl, apps moviles, etc. Se permiten.
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (origenesPermitidos.includes(origin)) {
+        return callback(null, true);
+      }
+
+      console.warn(`CORS bloqueado para origen no permitido: ${origin}`);
+      return callback(new Error("No permitido por CORS"));
+    },
+  })
+);
 
 const pg = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -163,4 +192,5 @@ app.delete("/usuarios/:id", async (request, response) => {
 // comprobar si el servidor esta conectado
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  console.log("Origenes permitidos (CORS):", origenesPermitidos.join(", "));
 });
