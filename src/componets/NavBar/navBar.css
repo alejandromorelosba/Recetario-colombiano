@@ -1,5 +1,5 @@
 /** barra de navegacion **/
-.navBar{
+.navBar {
     background-color: var(--header);
     margin: 0 10px 10px 10px;
     padding: 10px 20px;
@@ -10,22 +10,64 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 10px 20px;
 }
 
-.navBar ul{
+/* Logo (izquierda) */
+.navBar h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    flex: 0 0 auto;
+}
+
+.navBar h1 a {
+    color: var(--main-background);
+    text-decoration: none;
+}
+
+/* Buscador: ocupa casi todo el ancho de la fila superior */
+.navBar .searchForm {
+    flex: 1 1 300px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background-color: var(--main-background);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.navBar .searchForm input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 6px;
+    min-width: 0;
+}
+
+.navBar .searchForm button {
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--boton);
+    color: var(--header);
+}
+
+/* Listas (base compartida) */
+.navBar ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 10px;
     margin: 0;
     padding: 0;
 }
 
-.navBar ul li a{
+.navBar ul li a {
     display: block;
     color: var(--main-background);
     text-decoration: none;
@@ -35,40 +77,55 @@
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.navBar ul li a:hover{
+.navBar ul li a:hover {
     background-color: var(--boton);
     color: var(--header);
 }
 
-.navAuth .btnLogin{
+/* Iniciar sesion / Registro (esquina derecha) */
+.navBar .navAuth {
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    margin-left: auto;
+}
+
+.navAuth .btnLogin {
     background-color: transparent;
     border: 2px solid var(--main-background);
 }
 
-.navAuth .btnLogin:hover{
+.navAuth .btnLogin:hover {
     background-color: var(--main-background);
     color: var(--header);
 }
 
-.navAuth .btnRegistro{
+.navAuth .btnRegistro {
     background-color: var(--action-color);
     color: var(--main-background);
 }
 
-.navAuth .btnRegistro:hover{
+.navAuth .btnRegistro:hover {
     background-color: var(--resaltar);
     color: var(--header);
 }
 
-@media (max-width: 768px){
-    .navBar{
-        flex-direction: column;
-        align-items: center;
-    }
+/* Enlaces de informacion: fila inferior, a lo ancho y centrados */
+.navBar .navLinks {
+    flex: 0 0 100%;
+    justify-content: center;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
 
-    .navBar ul{
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
+@media (max-width: 768px) {
+    /* Fila 1: logo + sesion | Fila 2: buscador | Fila 3: enlaces */
+    .navBar .navLogo { order: 1; }
+    .navBar .navAuth { order: 2; }
+    .navBar .searchForm { order: 3; flex: 0 0 100%; box-sizing: border-box; }
+    .navBar .navLinks { order: 4; gap: 5px; }
+
+    .navBar .navAuth li a {
+        padding: 6px 10px;
+        font-size: 0.9rem;
     }
 }
