@@ -23,9 +23,10 @@ export default function NavBar() {
 
             <ul className="navLinks">
                 <li><a href="/recetas">Receta</a></li>
-                <li><a href="/#complementos">postres</a></li>
-                <li><a href="/#ingredientes">departamentos</a></li>
-                <li><a href="/#datos">Datos Curiosos</a></li>
+                <li><a href="/Aperitivos">Aperitivos</a></li>
+                <li><a href="/Postres">postres</a></li>
+                <li><a href="/Departamentos">departamentos</a></li>
+                <li><a href="/Contactos">contactos</a></li>
             </ul>
 
         </nav>
