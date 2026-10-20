@@ -1,0 +1,93 @@
+/** cuadricula: maximo 2 por fila, el resto baja **/
+.descripGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 10px;
+}
+
+/** tarjeta **/
+.descrip {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+.descripMiniatura {
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+}
+
+.descripImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.25s ease;
+}
+
+.descripMiniatura:hover .descripImg {
+    transform: scale(1.04);
+}
+
+.descripInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 4px;
+}
+
+.descripTitulo {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.3;
+}
+
+.descripTitulo a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.descripTitulo a:hover {
+    text-decoration: underline;
+}
+
+/* maximo 2 lineas de descripcion */
+.descripTexto {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.btnReceta {
+    align-self: flex-start;
+    margin-top: 4px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: var(--boton);
+    color: var(--header);
+    transition: background-color 0.2s ease;
+}
+
+.btnReceta:hover {
+    background-color: var(--resaltar);
+}
+
+/* en pantallas pequenas: 1 por fila */
+@media (max-width: 600px) {
+    .descripGrid {
+        grid-template-columns: 1fr;
+    }
+}

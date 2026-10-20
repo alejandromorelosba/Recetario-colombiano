@@ -1,6 +1,10 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import App from "./app"; // "Login" aquí es el nombre que YO le doy al importar, no depende del nombre interno
+import App from "./app.jsx";
+import ListOfFood from "./ListOfFood.jsx";
 
-const root = createRoot(document.getElementById('root'));
-root.render(<App/>);
+const root = createRoot(document.getElementById("root"));
+root.render(<App />);
+
+const recipes = createRoot(document.getElementById("recipes"));
+recipes.render(<ListOfFood />);
