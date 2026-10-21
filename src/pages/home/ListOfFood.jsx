@@ -15,5 +15,6 @@ const recipes = [
 ];
 
 export default function ListOfFood() {
+    <h3>Recetas recomendadas</h3>;
     return <DescripGrid items={recipes} />;
 }
