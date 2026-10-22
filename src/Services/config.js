@@ -4,4 +4,4 @@
  * usando el archivo .env (desarrollo) o .env.production (build de produccion).
  * Si no existe la variable, se usa localhost como valor por defecto.
  */
-export const API_URL = process.env.API_URL || "http://localhost:5432";
+export const API_URL = process.env.API_URL || "http://localhost:3000";
