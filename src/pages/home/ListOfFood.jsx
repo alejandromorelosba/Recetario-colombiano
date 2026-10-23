@@ -10,11 +10,15 @@ const recipes = [
         imagen: arrozConPollo,
         titulo: "Arroz con pollo",
         descripcion: "Plato tradicional colombiano que se prepara con arroz, pollo y una variedad de especias.",
-        enlace: "/src/Rice_chiken.html",
+        enlace: "/Rice_chicken.html",
     },
 ];
 
 export default function ListOfFood() {
-    <h3>Recetas recomendadas</h3>;
-    return <DescripGrid items={recipes} />;
+    return (
+        <>
+            <h3>Recetas recomendadas</h3>
+            <DescripGrid items={recipes} />
+        </>
+    );
 }

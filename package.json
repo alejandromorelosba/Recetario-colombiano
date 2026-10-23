@@ -4,9 +4,10 @@
   "description": "",
   "scripts": {
     "start": "parcel src/index.html src/login.html src/Registrar.html src/Rice_chicken.html",
-    "build": "parcel build src/index.html src/login.html src/Registrar.html src/Rice_chicken.html --dist-dir dist",
-    "api": "node src/services/api.js",
-    "dev": "concurrently \"npm:api\" \"npm:start\""
+    "build": "parcel build src/index.html src/login.html src/Registrar.html src/Rice_chicken.html --dist-dir dist --no-source-maps",
+    "api": "node src/Services/api.js",
+    "dev": "concurrently \"npm:api\" \"npm:start\"",
+    "test": "node --test \"test/*.test.js\""
   },
   "author": "",
   "license": "ISC",
