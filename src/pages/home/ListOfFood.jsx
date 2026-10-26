@@ -10,7 +10,7 @@ const recipes = [
         imagen: arrozConPollo,
         titulo: "Arroz con pollo",
         descripcion: "Plato tradicional colombiano que se prepara con arroz, pollo y una variedad de especias.",
-        enlace: "/Rice_chicken.html",
+        enlace: "/arroz-con-pollo.html",
     },
 ];
 
